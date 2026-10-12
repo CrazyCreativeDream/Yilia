@@ -1,0 +1,58 @@
+{
+  "name": "yilia",
+  "version": "0.1.0",
+  "description": "Yilia - a NASDK NApp providing full Chunfeng (DokiDoki DK-META2) BLE device control over WebSocket and Streamable HTTP",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./ble": {
+      "types": "./dist/ble/index.d.ts",
+      "import": "./dist/ble/index.js"
+    },
+    "./chunfeng": {
+      "types": "./dist/chunfeng/index.d.ts",
+      "import": "./dist/chunfeng/index.js"
+    }
+  },
+  "bin": {
+    "yilia": "./dist/cli.js",
+    "yilia-server": "./dist/server.js"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "start": "tsx src/server.ts",
+    "diagnose": "node scripts/diagnose-device.mjs",
+    "dev": "tsx watch src/server.ts",
+    "test": "tsx --test test/*.test.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@nyirusu/nact-streamable-http-client": "^1.0.4",
+    "@nyirusu/nact-streamable-http-server": "^1.0.4",
+    "@nyirusu/nact-websocket-client": "^1.0.4",
+    "@nyirusu/nact-websocket-server": "^1.0.4",
+    "@nyirusu/nasdk": "^1.0.4",
+    "dbus-next": "^0.10.2"
+  },
+  "optionalDependencies": {
+    "@abandonware/noble": "^1.9.2-26"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "tsx": "^4.20.0",
+    "typescript": "^5.9.0"
+  },
+  "license": "MIT",
+  "allowScripts": {
+    "esbuild@0.28.2": true,
+    "cbor-extract@2.2.2": true
+  }
+}
